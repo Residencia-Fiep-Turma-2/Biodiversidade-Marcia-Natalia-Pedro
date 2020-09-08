@@ -1,0 +1,8 @@
+README.md
+setup.py
+qualidadedados/__init__.py
+qualidadedados/qualidade_dados.py
+qualidadedados.egg-info/PKG-INFO
+qualidadedados.egg-info/SOURCES.txt
+qualidadedados.egg-info/dependency_links.txt
+qualidadedados.egg-info/top_level.txt
