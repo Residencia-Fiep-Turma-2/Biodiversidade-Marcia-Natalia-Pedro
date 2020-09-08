@@ -53,11 +53,14 @@ class QualidadeDados:
 
     #Identificar a quantidade de linhas com dados faltantes para cada coluna, e fazer a média desses dados:
     def dadosFaltantesPorColuna(self):        
+        
+        dataDictList = self.transformToDictList()
+
         dictFaltantes = {} 
 
         for coluna in self.headLista:
 
-            count = len([item for item in self.dataDictList if item[coluna] == "Sem Informações"])
+            count = len([item for item in dataDictList if item[coluna] == "Sem Informações"])
             #print(coluna, count)
             #print(len(self.dataDictList))
             dictFaltantes[coluna] = count
