@@ -7,18 +7,18 @@ class PandasFiltros:
         self.path = input("Digite o caminho do arquivo: ")
         self.file = pd.read_csv(self.path, sep=";")
 
-    def teste(self):
+    def NumIndiv(self):  #Filtra o numero de indivíduos no estado indicado
         sigla = input("Digite a sigla do estado: ").upper()
         numero = self.file.loc[self.file['Estado/Provincia'] == sigla, 'Numero de individuos'].sum()
         print ("Número de indivíduos em", sigla, ":", numero)
-        
-        #for line in sigla_estados:
-         #   print (self.file.sum('Numero de individuos'))
-        #print(sigla_estados)
-            #print (result)
-        #print (self.file[['Estado/Provincia'] == 'SP'])
-   
-    def nivel(self):
+
+    def NumOccor(self):  #Filtra o numero de ocorrências no estado indicado
+        sigla = input("Digite a sigla do estado: ").upper()
+        count = self.file[self.file['Estado/Provincia'] == sigla]
+        print ("Número de ocorrências em", sigla, ":", len(count))
+    
+    
+    def nivel(self): # digita especie e volta categoria de ameaça
         self.file['Especie'] = self.file['Especie'].astype(str)
         especie1 = self.file["Especie"].str.split(" ", n = 1, expand = True)
         self.file["First Especie"] = especie1[0]
@@ -32,9 +32,12 @@ class PandasFiltros:
         categoria = self.file.loc[(self.file['Especie'] == especie) | (self.file['First Especie'] == especie) | (self.file["Second Especie"] == especie), 'Categoria de Ameaca']
         #categoria = self.file.loc[np.logical_or(self.file['Especie'], self.file['First Especie'], self.file["Second Especie"]) == especie, 'Categoria de Ameaca']
         print(categoria)
-
-
+     
+        
+        
 
 obj = PandasFiltros()
-#obj.teste()
-#gitobj.nivel()
+obj.NumIndiv()
+obj.NumOccor()
+obj.nivel()
+
