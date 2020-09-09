@@ -32,12 +32,18 @@ class PandasFiltros:
         categoria = self.file.loc[(self.file['Especie'] == especie) | (self.file['First Especie'] == especie) | (self.file["Second Especie"] == especie), 'Categoria de Ameaca']
         #categoria = self.file.loc[np.logical_or(self.file['Especie'], self.file['First Especie'], self.file["Second Especie"]) == especie, 'Categoria de Ameaca']
         print(categoria)
-     
+
+    #Filtro que retorna todas as Localidades em que a Categoria de Ameaça é Vulnerável: 
+    def localidadesVulneraveis(self):
         
+        self.file['localidadesVulneraveis'] = [self.file['Localidade'] for item in self.file['Categoria de Ameaca'] if item == "Vulnerável"]
         
+        print("Localidades vulneráveis: \n" + str(self.file['localidadesVulneraveis'].explode().value_counts()))       
+        print("Quantidade de localidades em que a espécie está vulnerável:" + str(len(self.file['localidadesVulneraveis'])))
 
 obj = PandasFiltros()
 obj.NumIndiv()
 obj.NumOccor()
 obj.nivel()
+obj.localidadesVulneraveis()
 
